@@ -62,7 +62,7 @@ The user may also select to show: post thumbnail, readmore link and publish date
 = 1.07 =
 * Fixed not possible highlighting and selecting text in the tab panel
 * Fixed keeping active the chosen tab while selecting text in the tab panel (for mobile views)
-* Added keyboard navigation according to WCAG guidelines
+* Improved keyboard navigation according to WCAG guidelines
 
 = 1.06 =
 * Added option to translate a plugin
