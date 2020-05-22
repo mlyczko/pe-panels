@@ -3,7 +3,7 @@
  * Plugin Name: PE Panels
  * Plugin URI:  https://pixelemu.com
  * Description: Simple Panels with blog posts and pages.
- * Version:     1.06
+ * Version:     1.07
  * Author:      pixelemu.com
  * Author URI:  https://www.pixelemu.com
  * Text Domain: pe-panels
@@ -137,7 +137,7 @@ if( !class_exists('PE_Panels') ) {
 
 			<div class="pe-panels tabs default-theme desktop<?php echo $fullWidthClass . $position_class . ' items-' . $count_panel; ?>" data-responsive="<?php echo $responsive; ?>">
 				<div class="pn-headings">
-					<ul class="pn-list pn-clearfix" role="tablist" tabindex="0">
+					<ul class="pn-list pn-clearfix" role="tablist" aria-label="<?php echo __('Indicators','pe-panels'); ?>">
 						<?php
 							$tcount = 0;
 							foreach( $panels as $item ) {
@@ -148,7 +148,7 @@ if( !class_exists('PE_Panels') ) {
 						?>
 
 						<li class="pn-item item<?php echo $tcount; ?> <?php if($tcount == 1) echo'active'; ?>" role="presentation" data-number="<?php echo $tcount; ?>">
-							<a href="#<?php echo $itemID; ?>" role="tab">
+							<a href="#<?php echo $itemID; ?>" role="tab" aria-selected="false" aria-controls="<?php echo $itemID; ?>" id="<?php echo $itemID; ?>-panel">
 							<?php
 								// show date
 								if( $showdate == 1 ) {
@@ -184,7 +184,7 @@ if( !class_exists('PE_Panels') ) {
 
 							$itemID = $widget_id . '-post' . $item->ID;
 					?>
-					<div id="<?php echo $itemID; ?>" class="pn-content item<?php echo $ccount; ?> pn-clearfix <?php if($ccount == 1) echo'active'; ?>">
+					<div id="<?php echo $itemID; ?>" class="pn-content item<?php echo $ccount; ?> pn-clearfix <?php if($ccount == 1) echo'active'; ?>" tabindex="0" aria-labelledby="<?php echo $itemID; ?>-panel">
 						<?php
 
 							// show date
@@ -264,8 +264,8 @@ if( !class_exists('PE_Panels') ) {
 				?>
 
 				<div class="pn-panel <?php echo $panel_class . ' ' . $active; ?>">
-					<div id="<?php echo $headingId; ?>" class="pn-heading" role="tab">
-						<a href="#<?php echo $contentId; ?>" role="button" aria-controls="<?php echo $contentId; ?>">
+					<div id="<?php echo $headingId; ?>" class="pn-heading">
+						<a href="#<?php echo $contentId; ?>" class="pn-heading-button" role="button" aria-controls="<?php echo $contentId; ?>" id="<?php echo $headingId; ?>"  aria-expanded="<?php echo $expanded; ?>">
 							<?php
 							// show date
 							if( $showdate == 1 ) {
@@ -282,7 +282,7 @@ if( !class_exists('PE_Panels') ) {
 							?>
 						</a>
 					</div>
-					<div id="<?php echo $contentId; ?>" class="pn-content pn-clearfix" role="tabpanel" aria-labelledby="<?php echo $headingId; ?>" aria-expanded="<?php echo $expanded; ?>">
+					<div id="<?php echo $contentId; ?>" class="pn-content pn-clearfix" role="region" aria-labelledby="<?php echo $headingId; ?>">
 						<?php
 							//show thumbnail
 							if( $showthumb == 1 && has_post_thumbnail($item->ID) ) {
@@ -876,7 +876,7 @@ if ( ! function_exists( 'pe_panels_excerpt' ) ) {
 function pe_panels_enqueue() {
 	wp_enqueue_style( 'pe-panels', plugins_url() . '/pe-panels/css/panels.min.css', array(), '1.00' );
 	wp_enqueue_script( 'jquery.touchSwipe', plugins_url() . '/pe-panels/js/jquery.touchSwipe.min.js', array('jquery'), '16.18', true );
-	wp_enqueue_script( 'pe-panels-js', plugins_url() . '/pe-panels/js/panels.min.js', array('jquery', 'jquery.touchSwipe'), '1.00', true );
+	wp_enqueue_script( 'pe-panels-js', plugins_url() . '/pe-panels/js/panels.js', array('jquery', 'jquery.touchSwipe'), '1.00', true );
 }
 add_action( 'wp_enqueue_scripts', 'pe_panels_enqueue' );
 

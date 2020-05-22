@@ -7,8 +7,8 @@ Author URI:        https://www.pixelemu.com
 Author:            PixelEmu
 Requires at least: 3.8
 Tested up to:      5.3
-Stable tag:        1.06
-Version:           1.06
+Stable tag:        1.07
+Version:           1.07
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Donate link:       https://pixelemu.com
@@ -58,6 +58,11 @@ The user may also select to show: post thumbnail, readmore link and publish date
 7. Collapsed view with multiselect option.
 
 == Changelog ==
+
+= 1.07 =
+* Fixed not possible highlighting and selecting text in the tab panel
+* Fixed keeping active the chosen tab while selecting text in the tab panel (for mobile views)
+* Added keyboard navigation according to WCAG guidelines
 
 = 1.06 =
 * Added option to translate a plugin
